@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://crev2inf1u6xe"]
 
+[ext_resource type="Script" uid="uid://uusxfhw2epny" path="res://button.gd" id="1_06t4h"]
+
 [node name="Control" type="Control" unique_id=899526536]
 layout_mode = 3
 anchors_preset = 15
@@ -10,9 +12,12 @@ grow_vertical = 2
 
 [node name="Button" type="Button" parent="." unique_id=22338934]
 layout_mode = 0
-offset_left = 487.0
-offset_top = 285.0
-offset_right = 536.0
-offset_bottom = 316.0
+offset_left = 405.0
+offset_top = 279.0
+offset_right = 467.95807
+offset_bottom = 323.47504
 scale = Vector2(4.860379, 3.4879296)
 text = "Play"
+script = ExtResource("1_06t4h")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

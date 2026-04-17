@@ -33,3 +33,7 @@ func _update_animation(direction: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	get_tree().call_deferred("reload_current_scene")
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	get_tree().change_scene_to_file("res://win_scene.tscn")

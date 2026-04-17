@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://c6jkds74fn2mm"]
 
 [ext_resource type="Texture2D" uid="uid://b424veyqyp4ng" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png" id="1_0f027"]
+[ext_resource type="Script" uid="uid://bss4mgihbqfdc" path="res://character_body_2d.gd" id="1_gyfs4"]
 [ext_resource type="Texture2D" uid="uid://0hpv1sqf6kvw" path="res://brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_2c62f"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="4_d5x1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2c62f"]
 atlas = ExtResource("1_0f027")
@@ -335,9 +337,13 @@ sources/0 = SubResource("TileSetAtlasSource_gyfs4")
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gyfs4"]
 distance = 10.009973
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
+size = Vector2(36, 32)
+
 [node name="MainScene" type="Node" unique_id=1475415124]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1198964247]
+script = ExtResource("1_gyfs4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=131868840]
 sprite_frames = SubResource("SpriteFrames_hq1ik")
@@ -346,7 +352,6 @@ frame = 2
 frame_progress = 0.7851459
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1260652005]
-visible = false
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_o3jxj")
 
@@ -365,5 +370,17 @@ tile_set = SubResource("TileSet_d5x1h")
 position = Vector2(21, 84)
 shape = SubResource("WorldBoundaryShape2D_gyfs4")
 
+[node name="Area2D2" type="Area2D" parent="." unique_id=1692812787]
+
+[node name="Icon" type="Sprite2D" parent="Area2D2" unique_id=368561767]
+position = Vector2(596.75, -97.25)
+scale = Vector2(0.26953113, 0.2539063)
+texture = ExtResource("4_d5x1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=598437615]
+position = Vector2(598, -97)
+shape = SubResource("RectangleShape2D_8mm7a")
+
 [connection signal="area_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="CharacterBody2D" method="_on_area_2d_2_body_entered"]
